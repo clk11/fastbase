@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}FastBase - User Management{% endblock %}
+
+{% block content %}
+<!-- Connection Test Card -->
+<div class="card">
+    <div class="card-header">
+        <h2>Database Connection</h2>
+        <button
+            class="btn btn-success"
+            hx-get="/web/test-connection"
+            hx-target="#connection-status"
+            hx-indicator="#test-spinner">
+            Test Connection
+            <span id="test-spinner" class="htmx-indicator spinner"></span>
+        </button>
+    </div>
+    <div id="connection-status">
+        <div class="alert alert-info">
+            Click "Test Connection" to verify database connectivity
+        </div>
+    </div>
+</div>
+
+<!-- Add User Card -->
+<div class="card">
+    <div class="card-header">
+        <h2>Add New User</h2>
+    </div>
+    <div id="form-container">
+        {% include 'components/user_form.html' %}
+    </div>
+</div>
+
+<!-- Users List Card -->
+<div class="card">
+    <div class="card-header">
+        <h2>Users</h2>
+        <button
+            class="btn btn-primary"
+            hx-get="/web/users"
+            hx-target="#users-container"
+            hx-indicator="#load-spinner">
+            Refresh
+            <span id="load-spinner" class="htmx-indicator spinner"></span>
+        </button>
+    </div>
+    <div id="users-container" hx-get="/web/users" hx-trigger="load">
+        <div class="empty-state">
+            <div class="empty-state-icon">⏳</div>
+            <div class="empty-state-text">Loading users...</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% if users %}
+<div class="users-grid">
+    {% for user in users %}
+    <div class="user-card" id="user-{{ user.id }}">
+        <div class="user-info">
+            <div class="user-details">
+                <div class="user-name">{{ user.name }}</div>
+                <div class="user-email">{{ user.email }}</div>
+                <div class="user-meta">
+                    Created: {{ user.created_at[:19].replace('T', ' ') if user.created_at else 'N/A' }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <div class="empty-state-icon">👥</div>
+    <div class="empty-state-text">No users found</div>
+    <p style="color: #aaa; font-size: 0.9rem; margin-top: 0.5rem;">Add your first user using the form above</p>
+</div>
+{% endif %}
