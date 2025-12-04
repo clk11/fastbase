@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Depends
 from app.config import get_settings, Settings
-from app import routes
+from app import routes, web
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -9,14 +9,16 @@ app = FastAPI(
     version="0.1.0"
 )
 
-# Register API router
+# Register routers
+app.include_router(web.router, prefix="/web", tags=["Web"])
 app.include_router(routes.router, prefix="/api", tags=["API"])
 
 
 @app.get("/")
 async def root():
-    """Root endpoint - simple hello world."""
-    return {"message": "Hello World"}
+    """Redirect to web interface."""
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/web/")
 
 
 @app.get("/health")
