@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends
 from app.config import get_settings, Settings
+from app import routes
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -7,6 +8,9 @@ app = FastAPI(
     description="FastAPI + Supabase + HTMX User Management App",
     version="0.1.0"
 )
+
+# Register API router
+app.include_router(routes.router, prefix="/api", tags=["API"])
 
 
 @app.get("/")
