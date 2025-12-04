@@ -4,7 +4,7 @@ A modern, production-ready boilerplate for building web applications with FastAP
 
 ## Overview
 
-FastBase is a full-stack application boilerplate that provides a solid foundation for building CRUD applications with real-time capabilities. It features a clean architecture with API endpoints and a dynamic web interface.
+FastBase is a full-stack application boilerplate that provides a solid foundation for building CRUD applications with real-time capabilities. It features a clean architecture with HTMX for dynamic interactions.
 
 ## Tech Stack
 
@@ -140,13 +140,13 @@ After running the SQL:
 ### Development Mode (with auto-reload)
 
 ```bash
-uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+uv run uvicorn server:app --reload --host 0.0.0.0 --port 8000
 ```
 
 ### Production Mode
 
 ```bash
-uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
+uv run uvicorn server:app --host 0.0.0.0 --port 8000
 ```
 
 The server will start on `http://localhost:8000`
@@ -167,31 +167,3 @@ http://localhost:8000
 - View all users in real-time
 - Automatic duplicate email detection
 - Responsive design with modern UI
-
-### API Endpoints
-
-**Connection Test:**
-```bash
-GET /api/test-connection
-```
-
-**List Users (with pagination):**
-```bash
-GET /api/users?skip=0&limit=100
-```
-
-**Create User:**
-```bash
-POST /api/users
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com"
-}
-```
-
-**Health Check:**
-```bash
-GET /health
-```

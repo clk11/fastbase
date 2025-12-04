@@ -1,5 +1,5 @@
 <form
-    hx-post="/web/users"
+    hx-post="/users"
     hx-target="#users-container"
     hx-on::after-request="if(event.detail.successful) this.reset()"
     hx-indicator="#submit-spinner">
